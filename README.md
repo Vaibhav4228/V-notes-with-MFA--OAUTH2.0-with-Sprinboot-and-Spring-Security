@@ -127,20 +127,35 @@ docker pull vaibhav990/v-notes
 
 ---
 
-## 📌 Technologies Used
-- Java, Spring Boot, Spring Security
-- MySQL, JPA, Hibernate
-- ReactJS, Axios, React Router
-- Docker, Swagger (for API documentation)
+## 📦 Tech Stack
+
+### 🧩 Backend
+- Java 17
+- Spring Boot 3
+- Spring Security + JWT + OAuth2.0
+- PostgreSQL (or any preferred DB)
+- Dockerized deployment
+
+### 💻 Frontend
+- React.js (Vite)
+- Tailwind CSS for styling
+- Axios for API integration
+
+### 🔐 Security
+- JWT Authentication
+- OAuth2.0 (Google, GitHub)
+- Multi-Factor Authentication (MFA)
+- CSRF protection
 
 ---
 
-## 👨‍💻 Developer
-**Vaibhav** – Full Stack Developer & Security Enthusiast
+## 👨‍💻 Developed By
 
-For contributions, bug reports, or feature requests, feel free to reach out or create a GitHub issue.
+**Vaibhav Sharma**  
+🔗 [GitHub](https://github.com/Vaibhav4228) | [LeetCode](https://leetcode.com/u/vaibhav990/) | [Instagram](https://www.instagram.com/vaibhav_sharmatic9?igsh=dXA4aGNvcmJyMW56)
 
 ---
+
 
 ## 📄 License
 MIT License - Feel free to use this as a template for secure note apps.
