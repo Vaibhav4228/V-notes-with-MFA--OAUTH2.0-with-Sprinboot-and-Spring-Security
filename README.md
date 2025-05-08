@@ -1,97 +1,146 @@
-# Master Spring Security with the Secure Notes Application
 
-Welcome to the **Spring Security Masterclass**, where you'll not only learn the fundamentals of Spring Security but also build a fully-functional **Secure Notes Application** hands-on. This course is your gateway to mastering security in Java applications, but the journey doesn’t end here!
+# V-Notes Application
 
-## 🚀 Continue Your Learning Journey
+**V-Notes** is a secure, full-stack note management application built using **Spring Boot (Spring Security 6)** and **ReactJS**. This project focuses on high-level security features including **OAuth2.0 login**, **multi-factor authentication (MFA)**, and robust **role-based access control**, tailored for both end users and administrators.
 
-Now that you've built a secure application, it's time to expand your skills further. Below are some advanced courses that will help you take your Spring Boot and Java knowledge to the next level.
+## 🚀 Live Frontend Deployment
+[https://v-notes-iota.vercel.app/](https://v-notes-iota.vercel.app/)
 
-### 🎓 The Ultimate Java and Spring Boot Mastery
+## 🐳 Backend Docker Image
+```
+docker pull vaibhav990/v-notes
+```
+![image](https://github.com/user-attachments/assets/596e39ff-290b-402b-bc97-4d4fe9d37383)
 
-**[Spring Boot By Building Complex Projects Step by Step](https://link.embarkx.com/spring-boot) (47+ Hours of Content)**  
-After mastering Spring Security, dive into complex projects that will challenge and expand your understanding of Spring Boot. This course is perfect for those looking to build production-grade applications.
-
-**[Master Spring Boot Microservices](https://link.embarkx.com/microservices) (23+ Hours of Content)**  
-Transition from monolithic applications to microservices with this comprehensive course. Learn how to design, build, and deploy microservices using Spring Boot and related technologies.
-
-**[Learn Java with 60+ Hours of Content](http://link.embarkx.com/java) (60+ Hours of Content)**  
-Strengthen your core Java skills, which are essential for mastering any Java-based framework like Spring. This extensive course covers everything from basics to advanced concepts in Java.
-
-**[Master Spring Security with React JS + OAuth2](https://link.embarkx.com/spring-security) (23+ Hours of Content)**  
-Already comfortable with Spring Security? Take it to the next level by integrating it with React and OAuth2. Learn to build modern, secure, full-stack applications.
-
-**[Master IntelliJ IDEA](http://link.embarkx.com/intellij) (3+ Hours of Content)**  
-Enhance your productivity by mastering IntelliJ IDEA, the IDE of choice for Java developers. This course will teach you how to maximize your efficiency when developing Java applications.
-
-## 🌟 With All Our Courses You Gain Access To
-
-- 📝 **Notes:** Detailed and downloadable notes to accompany each lesson.
-- 💻 **Source Code:** Full access to the source code used in the tutorials.
-- 🤔 **Doubt Solving:** Responsive instructor and community support.
-- 🎥 **High-Quality HD Videos:** Easy to understand, high-definition video tutorials.
-- 🔄 **Free Lifetime Updates:** Continuous updates to course content at no extra cost.
-
-## 📚 Why Choose This Mastery Series?
-
-By enrolling in these courses, you're not just acquiring knowledge; you're preparing to dominate the field of Java and Spring Boot development. Our structured learning path ensures that you build your skills progressively, with each course designed to build on the knowledge gained from the previous one.
-
-Most of these courses are available on **Udemy For Business**, so if you have a subscription, you can access them for free!
-
-## 🔗 Join Us Now!
-
-Don’t stop at mastering Spring Security—expand your expertise across the entire Spring ecosystem and Java development. **[Enroll in these courses](https://link.embarkx.com/spring-boot)** today and start building your future!
 
 ---
 
-**Happy Learning!**  
-*Faisal Memon & the EmbarkX Team*
+## 🔐 Key Features
+
+### 1. **User Authentication**
+- Traditional login/signup with secure password hashing.
+- OAuth2.0 based login with **Google** and **GitHub** accounts.
+- MFA support using an **Authenticator App** via the following dependency:
+
+```xml
+<dependency>
+    <groupId>com.warrenstrange</groupId>
+    <artifactId>googleauth</artifactId>
+    <version>1.4.0</version>
+</dependency>
+```
+
+### 2. **Secure Note Management**
+- Users can **create**, **read**, **update**, and **delete** personal notes.
+- Notes are securely tied to the authenticated user's account.
+
+### 3. **Password Reset Functionality**
+- Supports secure password recovery.
+- Sends reset link via email with a secure token.
+
+### 4. **Multi-Factor Authentication (MFA)**
+- Optional MFA using Google Authenticator.
+- Configurable from the user dashboard.
+
+### 5. **Role-Based Access Control**
+- Roles: **Admin**, **User**.
+- Admins can manage users and audit logs.
+
+### 6. **Admin Panel**
+- View and manage users.
+- Access audit logs for user actions.
+
+### 7. **JWT-Based Authentication**
+- Stateless authentication via JWTs.
+- Secure API access for frontend and backend communication.
+
+### 8. **CSRF and CORS Protection**
+- CSRF protection implemented with Spring Security.
+- CORS setup allows secure frontend-backend communication.
 
 ---
 
-### 📬 Contact Information
+## 📦 Backend – Spring Boot (Spring Security 6)
+- Spring Security for OAuth2.0, JWT, CSRF.
+- REST API design using controllers and services.
+- MySQL database with Spring Data JPA.
 
-- **Website:** [www.embarkx.com](http://www.embarkx.com)
-- **Email:** [embarkxofficial@gmail.com](mailto:embarkxofficial@gmail.com)
+### 🔁 API Endpoints
 
+#### Notes API
+- `GET /api/notes` - Fetch all notes
+- `POST /api/notes` - Create note
+- `PUT /api/notes/{noteId}` - Update note
+- `DELETE /api/notes/{noteId}` - Delete note
 
+#### Authentication API
+- `POST /api/auth/public/signup` - Register
+- `POST /api/auth/public/signin` - Login
+- `POST /api/auth/public/forgot-password` - Request reset
+- `POST /api/auth/public/reset-password` - Reset password
+- `POST /api/auth/verify-2fa` - Verify MFA
+- `POST /api/auth/public/verify-2fa-login` - MFA login
+- `POST /api/auth/enable-2fa` - Enable MFA
+- `POST /api/auth/disable-2fa` - Disable MFA
+- `GET /api/auth/user` - Get user info
 
+#### Admin API
+- `GET /api/admin/getusers` - List all users
+- `PUT /api/admin/update-role` - Change user roles
+- `PUT /api/admin/update-lock-status` - Lock account
+- `GET /api/admin/user/{id}` - Get user by ID
+- `GET /api/admin/roles` - Get all roles
 
-# Usage Policy for Course Materials
+#### Audit Logs API
+- `GET /api/audit` - View logs
+- `GET /api/audit/note/{id}` - View logs per note
 
-## Instructor Information
+---
 
-**Instructor:** Faisal Memon  
-**Company:** [EmbarkX.com](http://www.embarkx.com)
+## 🌐 Frontend – ReactJS
+- Built using **ReactJS**, styled with modern libraries.
+- Secure JWT-based authentication flow.
+- Pages include:
+  - Sign up / Login with 2FA
+  - Note Dashboard (CRUD)
+  - Admin Console (for admins)
+- State management using local storage/context.
+- API requests made using Axios.
 
-## Policy Overview
+---
 
-This document outlines the guidelines and restrictions concerning the use of course materials provided by EmbarkX, including but not limited to PDF presentations, code samples, and video tutorials.
+## 📁 Schemas (DTOs/Entities)
+- `User`, `UserDTO`
+- `Note`
+- `Role`
+- `AuditLog`
+- `SignupRequest`, `LoginRequest`, `CsrfToken`
 
-### 1. Personal Use Only
+---
 
-The materials provided in this course are intended for **your personal use only**. They are to be used solely for the purpose of learning and completing this course.
+## 🛡️ Security
+- Built with **Spring Security 6**
+- CSRF tokens and CORS setup
+- OAuth2.0 integration
+- MFA with TOTP via Authenticator apps
+- JWT for stateless sessions
 
-### 2. No Unauthorized Sharing or Distribution
+---
 
-You are **not permitted** to share, distribute, or publicly post any course materials on any websites, social media platforms, or other public forums without prior written consent from the instructor.
+## 📌 Technologies Used
+- Java, Spring Boot, Spring Security
+- MySQL, JPA, Hibernate
+- ReactJS, Axios, React Router
+- Docker, Swagger (for API documentation)
 
-### 3. Intellectual Property
+---
 
-All course materials are protected by copyright laws and are the intellectual property of Faisal Memon and EmbarkX. Unauthorized use, reproduction, or distribution of these materials is **strictly prohibited**.
+## 👨‍💻 Developer
+**Vaibhav** – Full Stack Developer & Security Enthusiast
 
-### 4. Reporting Violations
+For contributions, bug reports, or feature requests, feel free to reach out or create a GitHub issue.
 
-If you become aware of any unauthorized sharing or distribution of course materials, please report it immediately to [embarkxofficial@gmail.com](mailto:embarkxofficial@gmail.com).
+---
 
-### 5. Legal Action
-
-We reserve the right to take legal action against individuals or entities found to be violating this usage policy.
-
-## Thank You
-
-Thank you for respecting these guidelines and helping us maintain the integrity of our course materials.
-
-## Contact Information
-
-- **Email:** [embarkxofficial@gmail.com](mailto:embarkxofficial@gmail.com)
-- **Website:** [www.embarkx.com](http://www.embarkx.com)
+## 📄 License
+MIT License - Feel free to use this as a template for secure note apps.
